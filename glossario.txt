@@ -1,0 +1,64 @@
+int - rune
+char - scroll
+
+= =>  takes     equips/transforms/spawns/chooses
+
+if else  -> rule/curse
+else if -> special rule
+
+while/do while - dungeon/enter dungeon
+
+main() -> campaign
+
+== => human
+!= => alien
+> => titan
+< => dwarf
+>= => half titan
+<= => half dwarf
+
+! = > failed/altered
+|| => option
+&& => combo
+
+true => Lawful
+false => Chaotic
+
+
++ => heals
+* => hits
+/ => shares
+- => damages
+
+
+; => !
+
++= => buffs
+-= => nerfs
+
+
+print => sing
+input => take
+
+{ => StartTurn
+} => EndTurn
+
+===================================
+
+
+rune kimura takes 2!
+
+scroll andre takes 'a'!
+
+dungeon(kimura titan 2 option kimura dwarf 3)
+StartTurn
+kimura takes kimura heal 2!
+EndTurn
+
+
+rule(kimura alien 2 human Chaotic)
+StartTurn
+Sing("The cake is a lie!")!
+EndTurn
+
+kimura takes read!
