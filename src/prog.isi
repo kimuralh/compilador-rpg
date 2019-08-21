@@ -1,0 +1,17 @@
+campaign
+rune a, b, c!
+
+	take(a)!
+	take(b)!
+	c takes a heals b!
+	sing("por favor funciona")!
+	
+	rule(b heals 4 dwarf a){
+		sing("pelo amor da Aigis funcionaaaaaa")!
+	}
+	
+	dungeon(a damages c alien 2){
+		c takes c heals 1!
+	}
+	
+endcampaign
