@@ -10,10 +10,34 @@ class MeuParser extends Parser;
 prog	: "campaign" {initParser();} (declara)+ bloco
 	;
 
-declara : ("rune" T_Id {mapaVar.put(LT(0).getText(),LT(0).getText());}
-			(T_virg T_Id{mapaVar.put(LT(0).getText(),LT(0).getText());})* 
-		| "scroll" T_Id {mapaVar.put(LT(0).getText(),LT(0).getText());} 
-		(T_virg T_Id {mapaVar.put(LT(0).getText(),LT(0).getText());})*)T_pontoesc
+declara : ("rune" T_Id {if(mapaVar.get(LT(0).getText()) == null){
+							mapaVar.put(LT(0).getText(),LT(0).getText());
+							} 
+						else{
+								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
+							}
+						}
+			(T_virg T_Id{if(mapaVar.get(LT(0).getText()) == null){
+							mapaVar.put(LT(0).getText(),LT(0).getText());
+							}
+						else{
+								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
+							}
+						})* 
+		| "scroll" T_Id {if(mapaVar.get(LT(0).getText()) == null){
+							mapaVar.put(LT(0).getText(),LT(0).getText());
+							}
+						else{
+								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
+							}
+						} 
+		(T_virg T_Id {if(mapaVar.get(LT(0).getText()) == null){
+							mapaVar.put(LT(0).getText(),LT(0).getText());
+							}
+						else{
+								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
+							}
+						})*)T_pontoesc
 	;
 
 bloco	: (cmd)+ "endcampaign"
@@ -95,8 +119,9 @@ options{
 T_Id	: ('a' .. 'z' | 'A' .. 'Z')('a'..'z'|'A'..'Z'|'0'..'9')*
 	;
 
-T_num :('0'..'9')+
+T_num : ('0') | (('1'..'9')+ ('.'('0'..'9')+)?)
 	;
+
 
 T_virg	: ','
 	;

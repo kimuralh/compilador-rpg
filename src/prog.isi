@@ -1,9 +1,10 @@
 campaign
-rune a, b, c!
+rune f!
+scroll a, b, c!
 
 	take(a)!
 	take(b)!
-	c takes a heals b!
+	c takes a heals b heals 5.2 !
 	sing("por favor funciona")!
 	
 	rule(b heals 4 dwarf a){

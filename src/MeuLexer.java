@@ -261,19 +261,62 @@ tryAgain:
 		_ttype = T_num;
 		int _saveIndex;
 		
+		switch ( LA(1)) {
+		case '0':
 		{
-		int _cnt52=0;
-		_loop52:
-		do {
-			if (((LA(1) >= '0' && LA(1) <= '9'))) {
-				matchRange('0','9');
+			{
+			match('0');
+			}
+			break;
+		}
+		case '1':  case '2':  case '3':  case '4':
+		case '5':  case '6':  case '7':  case '8':
+		case '9':
+		{
+			{
+			{
+			int _cnt54=0;
+			_loop54:
+			do {
+				if (((LA(1) >= '1' && LA(1) <= '9'))) {
+					matchRange('1','9');
+				}
+				else {
+					if ( _cnt54>=1 ) { break _loop54; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+				}
+				
+				_cnt54++;
+			} while (true);
+			}
+			{
+			if ((LA(1)=='.')) {
+				match('.');
+				{
+				int _cnt57=0;
+				_loop57:
+				do {
+					if (((LA(1) >= '0' && LA(1) <= '9'))) {
+						matchRange('0','9');
+					}
+					else {
+						if ( _cnt57>=1 ) { break _loop57; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+					}
+					
+					_cnt57++;
+				} while (true);
+				}
 			}
 			else {
-				if ( _cnt52>=1 ) { break _loop52; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			
-			_cnt52++;
-		} while (true);
+			}
+			}
+			break;
+		}
+		default:
+		{
+			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());
+		}
 		}
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
 			_token = makeToken(_ttype);
@@ -367,8 +410,8 @@ tryAgain:
 		
 		match('"');
 		{
-		int _cnt61=0;
-		_loop61:
+		int _cnt66=0;
+		_loop66:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -407,10 +450,10 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt61>=1 ) { break _loop61; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+				if ( _cnt66>=1 ) { break _loop66; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
-			_cnt61++;
+			_cnt66++;
 		} while (true);
 		}
 		match('"');
