@@ -9,7 +9,7 @@ public interface RPGParserTokenTypes {
 	int T_virg = 7;
 	int LITERAL_scroll = 8;
 	int T_pontoesc = 9;
-	int LITERAL_endcampaign = 10;
+	int LITERAL_endCampaign = 10;
 	int LITERAL_equip = 11;
 	int T_ap = 12;
 	int T_fp = 13;

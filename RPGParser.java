@@ -178,7 +178,7 @@ public RPGParser(ParserSharedInputState state) {
 				_cnt12++;
 			} while (true);
 			}
-			match(LITERAL_endcampaign);
+			match(LITERAL_endCampaign);
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
@@ -382,7 +382,7 @@ public RPGParser(ParserSharedInputState state) {
 				break;
 			}
 			case T_Id:
-			case LITERAL_endcampaign:
+			case LITERAL_endCampaign:
 			case LITERAL_equip:
 			case LITERAL_sing:
 			case LITERAL_rule:
@@ -712,7 +712,7 @@ public RPGParser(ParserSharedInputState state) {
 		"T_virg",
 		"\"scroll\"",
 		"T_pontoesc",
-		"\"endcampaign\"",
+		"\"endCampaign\"",
 		"\"equip\"",
 		"T_ap",
 		"T_fp",

@@ -7,12 +7,14 @@ scroll a, b, c!
 	c takes a heals b heals 5.2 !
 	sing("por favor funciona")!
 	
-	rule(b heals 4 dwarf a){
+	rule(b heals 4 dwarf a)
+	turn
 		sing("pelo amor da Aigis funcionaaaaaa")!
-	}
+	endTurn
 	
-	dungeon(a damages c alien 2){
+	dungeon(a damages c alien 2)
+	turn
 		c takes c heals 1!
-	}
+	endTurn
 	
-endcampaign
+endCampaign

@@ -40,7 +40,7 @@ declara : ("rune" T_Id {if(mapaVar.get(LT(0).getText()) == null){
 						})*)T_pontoesc
 	;
 
-bloco	: (cmd)+ "endcampaign"
+bloco	: (cmd)+ "endCampaign"
 	;
 
 cmd	: cmdLeia T_pontoesc
@@ -113,8 +113,12 @@ fator 	: T_Id { if(mapaVar.get(LT(0).getText()) == null){
 class RPGLexer extends Lexer;
 options{
 	caseSensitive = true;
-	k = 5;
+	k = 7;
 }
+
+T_ac: "turn";
+	
+T_fc: "endTurn"	;
 
 T_Id	: ('a' .. 'z' | 'A' .. 'Z')('a'..'z'|'A'..'Z'|'0'..'9')*
 	;
@@ -135,11 +139,7 @@ T_ap	: '('
 T_fp	: ')'
 	;
 	
-T_ac	:'{'
-	;
-	
-T_fc	:'}'
-	;
+
 
 T_texto : '"'('a'..'z'|'0'..'9'|' '|'A'..'Z')+ '"'
 	;
