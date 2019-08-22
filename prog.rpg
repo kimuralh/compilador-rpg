@@ -1,6 +1,7 @@
 campaign
-rune a,b,c!
-	sing("Meu primeiro programa em ISI")!
+rune a,b,f!
+scroll c, d!
+	sing("Meu primeiro programa em RPG")!
 	sing("Digite o valor de A")!
 	equip( a )!
 	sing("Digite o valor de B")!

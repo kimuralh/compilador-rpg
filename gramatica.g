@@ -1,6 +1,7 @@
 class RPGParser extends Parser;
 {
 	java.util.HashMap<String, String> mapaVar; 
+	java.util.HashMap<String, String> mapaVarDouble; 
 	Tradutor t;
 	
 	 public void setTradutor(String name){
@@ -14,6 +15,8 @@ class RPGParser extends Parser;
 }
 
 prog	: { mapaVar = new java.util.HashMap<String,String>();
+			mapaVarDouble = new java.util.HashMap<String,String>();
+			
 			}
 		   "campaign" (declara)+ bloco
 	;
@@ -32,22 +35,23 @@ declara : ("rune" T_Id {if(mapaVar.get(LT(0).getText()) == null){
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
 							}
 						})* 
-		| "scroll" T_Id {if(mapaVar.get(LT(0).getText()) == null){
-							mapaVar.put(LT(0).getText(),LT(0).getText());
+		| "scroll" T_Id {if(mapaVarDouble.get(LT(0).getText()) == null){
+							mapaVarDouble.put(LT(0).getText(),LT(0).getText());
 							}
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
 							}
 						} 
-		(T_virg T_Id {if(mapaVar.get(LT(0).getText()) == null){
-							mapaVar.put(LT(0).getText(),LT(0).getText());
+		(T_virg T_Id {if(mapaVarDouble.get(LT(0).getText()) == null){
+							mapaVarDouble.put(LT(0).getText(),LT(0).getText());
 							}
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
 							}
 						})*)T_pontoesc
 						{
-					t.setVariaveis(mapaVar.values());
+					t.setVariaveisInt(mapaVar.values());
+					t.setVariaveisDouble(mapaVarDouble.values());
 					System.out.println("Variable list assembled...");
 		   }
 	;
@@ -65,7 +69,7 @@ cmd	: cmdLeia T_pontoesc
 
 cmdLeia :	"equip" T_ap 
 			T_Id { 
-				if(mapaVar.get(LT(0).getText()) == null){
+				if(mapaVar.get(LT(0).getText()) == null && mapaVarDouble.get(LT(0).getText()) == null){
 				throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 					t.addComando(new CmdLeia(LT(0).getText()));
@@ -75,7 +79,7 @@ cmdLeia :	"equip" T_ap
 
 cmdEscreva : "sing" T_ap (
 						T_texto
-						|T_Id { if(mapaVar.get(LT(0).getText()) == null){
+						|T_Id { if(mapaVar.get(LT(0).getText()) == null && mapaVarDouble.get(LT(0).getText()) == null){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 							}
@@ -85,7 +89,7 @@ cmdEscreva : "sing" T_ap (
 						T_fp
 					;
 
-cmdAttr : 	T_Id { if(mapaVar.get(LT(0).getText()) == null){
+cmdAttr : 	T_Id { if(mapaVar.get(LT(0).getText()) == null && mapaVarDouble.get(LT(0).getText()) == null){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					} 
 				}
@@ -119,7 +123,7 @@ expr	: termo(( "heals" | "damages")termo)*
 termo : fator(("hits"| "shares")fator)*
 	;
 
-fator 	: T_Id { if(mapaVar.get(LT(0).getText()) == null){
+fator 	: T_Id { if(mapaVar.get(LT(0).getText()) == null && mapaVarDouble.get(LT(0).getText()) == null){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 				}

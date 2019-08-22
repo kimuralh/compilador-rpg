@@ -9,19 +9,29 @@ public class Tradutor{
 	public static final String INPUT="scan";
     private String name;
 	
-	List<String>  variaveis;
+	List<String>  variaveisInt;
+	List<String>  variaveisDouble;
 	List<Comando> comandos;
 	
     public Tradutor(String name){
 		this.name = name;
 		comandos = new ArrayList<Comando>();
-		variaveis = new ArrayList<String>();
+		variaveisInt = new ArrayList<String>();
+		variaveisDouble = new ArrayList<String>();
 	}
 	
-	public void setVariaveis(Collection lista){
+	public void setVariaveisInt(Collection lista){
 		Iterator it = lista.iterator();
 		while (it.hasNext()){
-			variaveis.add((String)it.next());
+			variaveisInt.add((String)it.next());
+		}
+		
+	}
+	
+	public void setVariaveisDouble(Collection lista){
+		Iterator it = lista.iterator();
+		while (it.hasNext()){
+			variaveisDouble.add((String)it.next());
 		}
 		
 	}
@@ -35,8 +45,12 @@ public class Tradutor{
 			f.write("public class "+name+"{\n");
 			f.write("    public static void main(String args[]){\n");
 			f.write("      java.util.Scanner "+INPUT+"=new java.util.Scanner(System.in);\n");
-			for(String s: variaveis){
-				f.write(" int "+s+";\n");
+			for(int i=0; i<variaveisInt.size()/2 ; i++){
+				f.write(" int "+variaveisInt.get(i)+";\n");
+			}
+			
+			for(String s: variaveisDouble){
+				f.write(" Double "+s+";\n");
 			}
 			for(Comando c: comandos){
 				f.write(c.toJava()+"\n");
