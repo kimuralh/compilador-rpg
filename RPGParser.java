@@ -18,10 +18,16 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
  {
 
 	java.util.HashMap<String, String> mapaVar; 
+	Tradutor t;
 	
-	public void initParser(){
-		mapaVar = new java.util.HashMap<String,String>();
-	}
+	 public void setTradutor(String name){
+      t = new Tradutor(name);
+    }
+	
+	public Tradutor getTradutor(){
+       return t;
+    }
+	
 
 protected RPGParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
@@ -50,8 +56,9 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
+			mapaVar = new java.util.HashMap<String,String>();
+						
 			match(LITERAL_campaign);
-			initParser();
 			{
 			int _cnt3=0;
 			_loop3:
@@ -153,6 +160,10 @@ public RPGParser(ParserSharedInputState state) {
 			}
 			}
 			match(T_pontoesc);
+			
+								t.setVariaveis(mapaVar.values());
+								System.out.println("Variable list assembled...");
+					
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
@@ -243,9 +254,11 @@ public RPGParser(ParserSharedInputState state) {
 			match(LITERAL_equip);
 			match(T_ap);
 			match(T_Id);
-			if(mapaVar.get(LT(0).getText()) == null){
-								throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
+			
+							if(mapaVar.get(LT(0).getText()) == null){
+							throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
+								t.addComando(new CmdLeia(LT(0).getText()));
 							
 			match(T_fp);
 		}
@@ -283,6 +296,8 @@ public RPGParser(ParserSharedInputState state) {
 			}
 			}
 			}
+			t.addComando(new CmdEscreva(LT(0).getText()));
+									
 			match(T_fp);
 		}
 		catch (RecognitionException ex) {

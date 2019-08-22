@@ -1,13 +1,21 @@
 class RPGParser extends Parser;
 {
 	java.util.HashMap<String, String> mapaVar; 
+	Tradutor t;
 	
-	public void initParser(){
-		mapaVar = new java.util.HashMap<String,String>();
-	}
+	 public void setTradutor(String name){
+      t = new Tradutor(name);
+    }
+	
+	public Tradutor getTradutor(){
+       return t;
+    }
+	
 }
 
-prog	: "campaign" {initParser();} (declara)+ bloco
+prog	: { mapaVar = new java.util.HashMap<String,String>();
+			}
+		   "campaign" (declara)+ bloco
 	;
 
 declara : ("rune" T_Id {if(mapaVar.get(LT(0).getText()) == null){
@@ -38,6 +46,10 @@ declara : ("rune" T_Id {if(mapaVar.get(LT(0).getText()) == null){
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
 							}
 						})*)T_pontoesc
+						{
+					t.setVariaveis(mapaVar.values());
+					System.out.println("Variable list assembled...");
+		   }
 	;
 
 bloco	: (cmd)+ "endCampaign"
@@ -52,9 +64,11 @@ cmd	: cmdLeia T_pontoesc
 	;
 
 cmdLeia :	"equip" T_ap 
-			T_Id { if(mapaVar.get(LT(0).getText()) == null){
-					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
+			T_Id { 
+				if(mapaVar.get(LT(0).getText()) == null){
+				throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
+					t.addComando(new CmdLeia(LT(0).getText()));
 				}
 			T_fp
 	;
@@ -65,7 +79,10 @@ cmdEscreva : "sing" T_ap (
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 							}
-						) T_fp
+						) {t.addComando(new CmdEscreva(LT(0).getText()));
+						}
+						
+						T_fp
 					;
 
 cmdAttr : 	T_Id { if(mapaVar.get(LT(0).getText()) == null){
@@ -116,9 +133,9 @@ options{
 	k = 7;
 }
 
-T_ac: "turn";
+T_ac: "{";
 	
-T_fc: "endTurn"	;
+T_fc: "}"	;
 
 T_Id	: ('a' .. 'z' | 'A' .. 'Z')('a'..'z'|'A'..'Z'|'0'..'9')*
 	;

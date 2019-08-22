@@ -1,20 +1,15 @@
 campaign
-rune f!
-scroll a, b, c!
-
-	equip(a)!
-	equip(b)!
-	c takes a heals b heals 5.2 !
-	sing("por favor funciona")!
-	
-	rule(b heals 4 dwarf a)
-	turn
-		sing("pelo amor da Aigis funcionaaaaaa")!
-	endTurn
-	
-	dungeon(a damages c alien 2)
-	turn
-		c takes c heals 1!
-	endTurn
+rune a,b,c!
+	sing("Meu primeiro programa em ISI")!
+	sing("Digite o valor de A")!
+	equip( a )!
+	sing("Digite o valor de B")!
+	equip( b )!
+	sing("Digite o valor de C")!
+    equip( c )!
+	sing("Os valores que foram digitados")!
+	sing(a)!
+	sing(b)!
+	sing( c )!
 	
 endCampaign
