@@ -229,7 +229,7 @@ public RPGParser(ParserSharedInputState state) {
 				cmdIf();
 				break;
 			}
-			case LITERAL_dungeon:
+			case LITERAL_loop:
 			{
 				cmdWhile();
 				break;
@@ -406,7 +406,7 @@ public RPGParser(ParserSharedInputState state) {
 			case LITERAL_sing:
 			case LITERAL_rule:
 			case T_fc:
-			case LITERAL_dungeon:
+			case LITERAL_loop:
 			case LITERAL_action:
 			{
 				break;
@@ -428,7 +428,7 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
-			match(LITERAL_dungeon);
+			match(LITERAL_loop);
 			match(T_ap);
 			{
 			expr();
@@ -517,7 +517,7 @@ public RPGParser(ParserSharedInputState state) {
 			} while (true);
 			}
 			match(T_fc);
-			match(LITERAL_dungeon);
+			match(LITERAL_loop);
 			match(T_ap);
 			{
 			expr();
@@ -748,7 +748,7 @@ public RPGParser(ParserSharedInputState state) {
 		"T_ac",
 		"T_fc",
 		"\"curse\"",
-		"\"dungeon\"",
+		"\"loop\"",
 		"\"action\"",
 		"\"heals\"",
 		"\"damages\"",

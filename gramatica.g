@@ -107,14 +107,14 @@ cmdElse :  "curse" T_ac
 			T_fc
 		;
 
-cmdWhile : "dungeon" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp T_ac
+cmdWhile : "loop" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp T_ac
 				(cmd)+
 				T_fc
 		;
 
 cmdDoWhile : "action" T_ac 
 				(cmd)+
-			T_fc "dungeon" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp
+			T_fc "loop" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp
 		;
 		
 expr	: termo(( "heals" | "damages")termo)*
@@ -137,9 +137,9 @@ options{
 	k = 7;
 }
 
-T_ac: "{";
+T_ac: "turn";
 	
-T_fc: "}"	;
+T_fc: "endTurn"	;
 
 T_Id	: ('a' .. 'z' | 'A' .. 'Z')('a'..'z'|'A'..'Z'|'0'..'9')*
 	;

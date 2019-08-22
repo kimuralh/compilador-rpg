@@ -26,7 +26,7 @@ public interface RPGParserTokenTypes {
 	int T_ac = 24;
 	int T_fc = 25;
 	int LITERAL_curse = 26;
-	int LITERAL_dungeon = 27;
+	int LITERAL_loop = 27;
 	int LITERAL_action = 28;
 	int LITERAL_heals = 29;
 	int LITERAL_damages = 30;

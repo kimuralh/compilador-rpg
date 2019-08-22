@@ -23,7 +23,7 @@ LITERAL_human="human"=23
 T_ac=24
 T_fc=25
 LITERAL_curse="curse"=26
-LITERAL_dungeon="dungeon"=27
+LITERAL_loop="loop"=27
 LITERAL_action="action"=28
 LITERAL_heals="heals"=29
 LITERAL_damages="damages"=30

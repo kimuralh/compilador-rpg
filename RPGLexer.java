@@ -43,12 +43,12 @@ public RPGLexer(LexerSharedInputState state) {
 	literals.put(new ANTLRHashString("action", this), new Integer(28));
 	literals.put(new ANTLRHashString("sing", this), new Integer(14));
 	literals.put(new ANTLRHashString("takes", this), new Integer(16));
+	literals.put(new ANTLRHashString("loop", this), new Integer(27));
 	literals.put(new ANTLRHashString("curse", this), new Integer(26));
 	literals.put(new ANTLRHashString("human", this), new Integer(23));
 	literals.put(new ANTLRHashString("damages", this), new Integer(30));
 	literals.put(new ANTLRHashString("campaign", this), new Integer(4));
 	literals.put(new ANTLRHashString("half titan", this), new Integer(21));
-	literals.put(new ANTLRHashString("dungeon", this), new Integer(27));
 	literals.put(new ANTLRHashString("heals", this), new Integer(29));
 	literals.put(new ANTLRHashString("endCampaign", this), new Integer(10));
 	literals.put(new ANTLRHashString("alien", this), new Integer(22));
@@ -73,36 +73,6 @@ tryAgain:
 		try {   // for char stream error handling
 			try {   // for lexical error handling
 				switch ( LA(1)) {
-				case '{':
-				{
-					mT_ac(true);
-					theRetToken=_returnToken;
-					break;
-				}
-				case '}':
-				{
-					mT_fc(true);
-					theRetToken=_returnToken;
-					break;
-				}
-				case 'A':  case 'B':  case 'C':  case 'D':
-				case 'E':  case 'F':  case 'G':  case 'H':
-				case 'I':  case 'J':  case 'K':  case 'L':
-				case 'M':  case 'N':  case 'O':  case 'P':
-				case 'Q':  case 'R':  case 'S':  case 'T':
-				case 'U':  case 'V':  case 'W':  case 'X':
-				case 'Y':  case 'Z':  case 'a':  case 'b':
-				case 'c':  case 'd':  case 'e':  case 'f':
-				case 'g':  case 'h':  case 'i':  case 'j':
-				case 'k':  case 'l':  case 'm':  case 'n':
-				case 'o':  case 'p':  case 'q':  case 'r':
-				case 's':  case 't':  case 'u':  case 'v':
-				case 'w':  case 'x':  case 'y':  case 'z':
-				{
-					mT_Id(true);
-					theRetToken=_returnToken;
-					break;
-				}
 				case '0':  case '1':  case '2':  case '3':
 				case '4':  case '5':  case '6':  case '7':
 				case '8':  case '9':
@@ -148,7 +118,19 @@ tryAgain:
 					break;
 				}
 				default:
-				{
+					if ((LA(1)=='e') && (LA(2)=='n') && (LA(3)=='d') && (LA(4)=='T') && (LA(5)=='u') && (LA(6)=='r') && (LA(7)=='n')) {
+						mT_fc(true);
+						theRetToken=_returnToken;
+					}
+					else if ((LA(1)=='t') && (LA(2)=='u') && (LA(3)=='r') && (LA(4)=='n') && (true) && (true) && (true)) {
+						mT_ac(true);
+						theRetToken=_returnToken;
+					}
+					else if ((_tokenSet_0.member(LA(1))) && (true) && (true) && (true) && (true) && (true) && (true)) {
+						mT_Id(true);
+						theRetToken=_returnToken;
+					}
+				else {
 					if (LA(1)==EOF_CHAR) {uponEOF(); _returnToken = makeToken(Token.EOF_TYPE);}
 				else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
@@ -179,7 +161,7 @@ tryAgain:
 		_ttype = T_ac;
 		int _saveIndex;
 		
-		match("{");
+		match("turn");
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
 			_token = makeToken(_ttype);
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
@@ -192,7 +174,7 @@ tryAgain:
 		_ttype = T_fc;
 		int _saveIndex;
 		
-		match("}");
+		match("endTurn");
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
 			_token = makeToken(_ttype);
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
@@ -507,5 +489,10 @@ tryAgain:
 	}
 	
 	
+	private static final long[] mk_tokenSet_0() {
+		long[] data = { 0L, 576460743847706622L, 0L, 0L};
+		return data;
+	}
+	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
 	
 	}
