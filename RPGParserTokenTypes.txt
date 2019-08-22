@@ -7,7 +7,7 @@ T_virg=7
 LITERAL_scroll="scroll"=8
 T_pontoesc=9
 LITERAL_endcampaign="endcampaign"=10
-LITERAL_take="take"=11
+LITERAL_equip="equip"=11
 T_ap=12
 T_fp=13
 LITERAL_sing="sing"=14

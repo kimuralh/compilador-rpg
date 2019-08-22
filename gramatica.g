@@ -51,7 +51,7 @@ cmd	: cmdLeia T_pontoesc
 	| cmdDoWhile 
 	;
 
-cmdLeia :	"take" T_ap 
+cmdLeia :	"equip" T_ap 
 			T_Id { if(mapaVar.get(LT(0).getText()) == null){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}

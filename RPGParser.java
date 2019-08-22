@@ -191,7 +191,7 @@ public RPGParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			switch ( LA(1)) {
-			case LITERAL_take:
+			case LITERAL_equip:
 			{
 				cmdLeia();
 				match(T_pontoesc);
@@ -240,7 +240,7 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
-			match(LITERAL_take);
+			match(LITERAL_equip);
 			match(T_ap);
 			match(T_Id);
 			if(mapaVar.get(LT(0).getText()) == null){
@@ -383,7 +383,7 @@ public RPGParser(ParserSharedInputState state) {
 			}
 			case T_Id:
 			case LITERAL_endcampaign:
-			case LITERAL_take:
+			case LITERAL_equip:
 			case LITERAL_sing:
 			case LITERAL_rule:
 			case T_fc:
@@ -713,7 +713,7 @@ public RPGParser(ParserSharedInputState state) {
 		"\"scroll\"",
 		"T_pontoesc",
 		"\"endcampaign\"",
-		"\"take\"",
+		"\"equip\"",
 		"T_ap",
 		"T_fp",
 		"\"sing\"",
