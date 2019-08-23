@@ -18,6 +18,7 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
  {
 
 	java.util.HashMap<String, String> mapaVar; 
+	java.util.HashMap<String, String> mapaVarDouble; 
 	Tradutor t;
 	
 	 public void setTradutor(String name){
@@ -29,6 +30,7 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
     }
 
 	
+<<<<<<< HEAD
 
 protected RPGParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
@@ -851,3 +853,4 @@ public RPGParser(ParserSharedInputState state) {
 	public static final BitSet _tokenSet_7 = new BitSet(mk_tokenSet_7());
 	
 	}
+
