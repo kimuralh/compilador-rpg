@@ -17,7 +17,7 @@ import antlr.collections.impl.BitSet;
 public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTypes
  {
 
-	java.util.HashMap<String, String> mapaVar; 
+	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
 	
 	 public void setTradutor(String name){
@@ -56,9 +56,6 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
-			mapaVar = new java.util.HashMap<String,String>();
-						
-						
 			match(LITERAL_campaign);
 			{
 			int _cnt3=0;
@@ -94,9 +91,7 @@ public RPGParser(ParserSharedInputState state) {
 				match(T_Id);
 				if(!mapaVar.containsKey(LT(0).getText())){
 											mapaVar.put(LT(0).getText(), "rune");
-																System.out.println(mapaVar.keySet());
 				
-											System.out.println(LT(0).getText() + " declarado");
 											} 
 										else{
 												throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -110,9 +105,7 @@ public RPGParser(ParserSharedInputState state) {
 						match(T_Id);
 						if(!mapaVar.containsKey(LT(0).getText())){
 													mapaVar.put(LT(0).getText(), "rune");
-																		System.out.println(mapaVar.keySet());
 						
-													System.out.println(LT(0).getText() + " declarado");
 													}
 												else{
 														throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -133,9 +126,7 @@ public RPGParser(ParserSharedInputState state) {
 				match(T_Id);
 				if(!mapaVar.containsKey(LT(0).getText())){
 											mapaVar.put(LT(0).getText(), "scroll");
-																System.out.println(mapaVar.keySet());
 				
-											System.out.println(LT(0).getText() + " declarado");
 											}
 										else{
 												throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -149,9 +140,7 @@ public RPGParser(ParserSharedInputState state) {
 						match(T_Id);
 						if(!mapaVar.containsKey(LT(0).getText())){
 													mapaVar.put(LT(0).getText(), "scroll");
-																		System.out.println(mapaVar.keySet());
 						
-													System.out.println(LT(0).getText() + " declarado");
 													}
 												else{
 														throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -174,8 +163,10 @@ public RPGParser(ParserSharedInputState state) {
 			}
 			match(T_pontoesc);
 			
-								t.setVariaveis(mapaVar);
+								
+								t.setVariaveis(new java.util.HashMap<String,String>(mapaVar));
 								System.out.println("Variable list assembled...");
+			
 					
 		}
 		catch (RecognitionException ex) {
@@ -269,10 +260,9 @@ public RPGParser(ParserSharedInputState state) {
 			match(T_Id);
 			
 							if(!mapaVar.containsKey(LT(0).getText())){
-								System.out.println(mapaVar.keySet());
 							throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
-								t.addComando(new CmdLeia(LT(0).getText()));
+								t.addComando(new CmdLeia(LT(0).getText(), mapaVar.get(LT(0).getText())));
 							
 			match(T_fp);
 		}
@@ -299,7 +289,6 @@ public RPGParser(ParserSharedInputState state) {
 			{
 				match(T_Id);
 				if(!mapaVar.containsKey(LT(0).getText())){
-											System.out.println(mapaVar.keySet());
 									throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 												}
 											
@@ -327,7 +316,6 @@ public RPGParser(ParserSharedInputState state) {
 		try {      // for error handling
 			match(T_Id);
 			if(!mapaVar.containsKey(LT(0).getText())){
-				System.out.println(mapaVar.keySet());
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								} 
 							
@@ -702,7 +690,6 @@ public RPGParser(ParserSharedInputState state) {
 			{
 				match(T_Id);
 				if(mapaVar.containsKey(LT(0).getText())){
-					System.out.println(mapaVar.keySet());
 									throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 									}
 								

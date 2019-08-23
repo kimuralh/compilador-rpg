@@ -1,6 +1,6 @@
 class RPGParser extends Parser;
 {
-	java.util.HashMap<String, String> mapaVar; 
+	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
 	
 	 public void setTradutor(String name){
@@ -13,17 +13,13 @@ class RPGParser extends Parser;
 	
 }
 
-prog	: { mapaVar = new java.util.HashMap<String,String>();
-			
-			}
+prog	: 
 		   "campaign" (declara)+ bloco
 	;
 
 declara : ("rune" T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 							mapaVar.put(LT(0).getText(), "rune");
-												System.out.println(mapaVar.keySet());
 
-							System.out.println(LT(0).getText() + " declarado");
 							} 
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -31,9 +27,7 @@ declara : ("rune" T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 						}
 			(T_virg T_Id{if(!mapaVar.containsKey(LT(0).getText())){
 							mapaVar.put(LT(0).getText(), "rune");
-												System.out.println(mapaVar.keySet());
 
-							System.out.println(LT(0).getText() + " declarado");
 							}
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -41,9 +35,7 @@ declara : ("rune" T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 						})* 
 		| "scroll" T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 							mapaVar.put(LT(0).getText(), "scroll");
-												System.out.println(mapaVar.keySet());
 
-							System.out.println(LT(0).getText() + " declarado");
 							}
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
@@ -51,17 +43,17 @@ declara : ("rune" T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 						} 
 		(T_virg T_Id {if(!mapaVar.containsKey(LT(0).getText())){
 							mapaVar.put(LT(0).getText(), "scroll");
-												System.out.println(mapaVar.keySet());
 
-							System.out.println(LT(0).getText() + " declarado");
 							}
 						else{
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" ja foi declarado!!");
 							}
 						})*)T_pontoesc
 						{
-					t.setVariaveis(mapaVar);
+					
+					t.setVariaveis(new java.util.HashMap<String,String>(mapaVar));
 					System.out.println("Variable list assembled...");
+
 		   }
 	;
 
@@ -79,18 +71,16 @@ cmd	: cmdLeia T_pontoesc
 cmdLeia :	"equip" T_ap 
 			T_Id { 
 				if(!mapaVar.containsKey(LT(0).getText())){
-					System.out.println(mapaVar.keySet());
 				throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
-					t.addComando(new CmdLeia(LT(0).getText()));
+					t.addComando(new CmdLeia(LT(0).getText(), mapaVar.get(LT(0).getText())));
 				}
 			T_fp
 	;
-
+	
 cmdEscreva : "sing" T_ap (
 						T_texto
 						|T_Id { if(!mapaVar.containsKey(LT(0).getText())){
-							System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 							}
@@ -101,7 +91,6 @@ cmdEscreva : "sing" T_ap (
 					;
 
 cmdAttr : 	T_Id { if(!mapaVar.containsKey(LT(0).getText())){
-	System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					} 
 				}
@@ -136,7 +125,6 @@ termo : fator(("hits"| "shares")fator)*
 	;
 
 fator 	: T_Id { if(mapaVar.containsKey(LT(0).getText())){
-	System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 				}
