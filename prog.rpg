@@ -12,5 +12,6 @@ scroll c, d!
 	sing(a)!
 	sing(b)!
 	sing( c )!
-	
+	a takes b heals f!
+	a takes a heals 2!
 endCampaign

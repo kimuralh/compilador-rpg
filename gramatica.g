@@ -72,6 +72,7 @@ cmd	: cmdLeia T_pontoesc
 cmdLeia :	"equip" T_ap 
 			T_Id { 
 				if(!mapaVar.containsKey(LT(0).getText())){
+					System.out.println(mapaVar.keySet());
 				throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 					t.addComando(new CmdLeia(LT(0).getText(), mapaVar.get(LT(0).getText())));
@@ -82,6 +83,7 @@ cmdLeia :	"equip" T_ap
 cmdEscreva : "sing" T_ap (
 						T_texto
 						|T_Id { if(!mapaVar.containsKey(LT(0).getText())){
+							System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 							}
@@ -92,11 +94,15 @@ cmdEscreva : "sing" T_ap (
 					;
 
 cmdAttr : 	T_Id { if(!mapaVar.containsKey(LT(0).getText())){
+	System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					} 
 				}
 			"takes" 
 			expr
+			{
+				t.addComando(new CmdAttr(LT(0).getText(), mapaVar.get(LT(0).getText()), LT(1).getText()));
+			}
 	;
 	
 cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
@@ -154,7 +160,8 @@ expr	:
 termo : fator(("hits"| "shares")fator)*
 	;
 
-fator 	: T_Id { if(mapaVar.containsKey(LT(0).getText())){
+fator 	: T_Id { if(!mapaVar.containsKey(LT(0).getText())){
+					System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 				}

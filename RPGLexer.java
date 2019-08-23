@@ -43,12 +43,12 @@ public RPGLexer(LexerSharedInputState state) {
 	literals.put(new ANTLRHashString("action", this), new Integer(29));
 	literals.put(new ANTLRHashString("sing", this), new Integer(14));
 	literals.put(new ANTLRHashString("takes", this), new Integer(16));
+	literals.put(new ANTLRHashString("loop", this), new Integer(28));
 	literals.put(new ANTLRHashString("curse", this), new Integer(27));
 	literals.put(new ANTLRHashString("human", this), new Integer(24));
 	literals.put(new ANTLRHashString("damages", this), new Integer(31));
 	literals.put(new ANTLRHashString("campaign", this), new Integer(4));
 	literals.put(new ANTLRHashString("half titan", this), new Integer(22));
-	literals.put(new ANTLRHashString("dungeon", this), new Integer(28));
 	literals.put(new ANTLRHashString("heals", this), new Integer(30));
 	literals.put(new ANTLRHashString("endCampaign", this), new Integer(10));
 	literals.put(new ANTLRHashString("alien", this), new Integer(23));
