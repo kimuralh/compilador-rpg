@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Collection;
+import java.util.HashMap;
 import java.io.FileWriter;
 import java.io.File;
 
@@ -20,19 +20,31 @@ public class Tradutor{
 		variaveisDouble = new ArrayList<String>();
 	}
 	
-	public void setVariaveisInt(Collection lista){
-		Iterator it = lista.iterator();
-		while (it.hasNext()){
-			variaveisInt.add((String)it.next());
-		}
-		
-	}
+	public void setVariaveis(HashMap hmap)
+	{
+		Iterator it = hmap.entrySet().iterator();
+    while (it.hasNext()) {
+        HashMap.Entry pair = (HashMap.Entry)it.next();
+				//System.out.println(pair.getKey() + " = " + pair.getValue());
+				String varType = (String) pair.getValue();
+				switch(varType)
+				{
+						case "rune":
+							variaveisInt.add((String) pair.getKey());
+							break;
+						case "scroll":
+							variaveisDouble.add((String) pair.getKey());
+							break;
+				}
+				it.remove(); // avoids a ConcurrentModificationException
+			}
 	
-	public void setVariaveisDouble(Collection lista){
-		Iterator it = lista.iterator();
-		while (it.hasNext()){
-			variaveisDouble.add((String)it.next());
-		}
+	// public void setVariaveisDouble(Collection lista){
+	// 	Iterator it = lista.iterator();
+	// 	while (it.hasNext()){
+	// 		variaveisDouble.add((String)it.next());
+	//ss
+	// 	}
 		
 	}
 	public void addComando(Comando c){
