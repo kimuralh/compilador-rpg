@@ -102,17 +102,14 @@ cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
 			"rule" T_ap ((T_Id|T_num)
 			{
 				expressaoIf.setLeft(LT(0).getText());
-				System.out.println(LT(0).getText());
 			} 
 			("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human")
 			{
 				expressaoIf.setOp(LT(0).getText());
-				System.out.println(LT(0).getText());
 			} 
 			 (T_Id|T_num) 
 			 {
 			 	expressaoIf.setRight(LT(0).getText());
-				System.out.println(LT(0).getText());
 			 }) T_fp T_ac 
 			{
 				t.addComando(expressaoIf);
@@ -126,9 +123,17 @@ cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
 				(cmdElse)?
 		;
 
-cmdElse :  "curse" T_ac
+cmdElse :{CmdElse expressaoElse =  new CmdElse();}
+  		"curse" T_ac 
+  				{
+					t.addComando(expressaoElse);
+				} 
 				(cmd)+
 			T_fc
+			{
+				CmdElse expressaoElseFim =  new CmdElse("fim");
+				t.addComando(expressaoElseFim);
+			}
 		;
 
 cmdWhile : "loop" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp T_ac
