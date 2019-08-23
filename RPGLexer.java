@@ -43,12 +43,12 @@ public RPGLexer(LexerSharedInputState state) {
 	literals.put(new ANTLRHashString("action", this), new Integer(29));
 	literals.put(new ANTLRHashString("sing", this), new Integer(14));
 	literals.put(new ANTLRHashString("takes", this), new Integer(16));
+	literals.put(new ANTLRHashString("loop", this), new Integer(28));
 	literals.put(new ANTLRHashString("curse", this), new Integer(27));
 	literals.put(new ANTLRHashString("human", this), new Integer(24));
 	literals.put(new ANTLRHashString("damages", this), new Integer(31));
 	literals.put(new ANTLRHashString("campaign", this), new Integer(4));
 	literals.put(new ANTLRHashString("half titan", this), new Integer(22));
-	literals.put(new ANTLRHashString("dungeon", this), new Integer(28));
 	literals.put(new ANTLRHashString("heals", this), new Integer(30));
 	literals.put(new ANTLRHashString("endCampaign", this), new Integer(10));
 	literals.put(new ANTLRHashString("alien", this), new Integer(23));
@@ -218,7 +218,7 @@ tryAgain:
 		}
 		}
 		{
-		_loop53:
+		_loop55:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -252,7 +252,7 @@ tryAgain:
 			}
 			default:
 			{
-				break _loop53;
+				break _loop55;
 			}
 			}
 		} while (true);
@@ -283,34 +283,34 @@ tryAgain:
 		{
 			{
 			{
-			int _cnt58=0;
-			_loop58:
+			int _cnt60=0;
+			_loop60:
 			do {
 				if (((LA(1) >= '1' && LA(1) <= '9'))) {
 					matchRange('1','9');
 				}
 				else {
-					if ( _cnt58>=1 ) { break _loop58; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+					if ( _cnt60>=1 ) { break _loop60; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				
-				_cnt58++;
+				_cnt60++;
 			} while (true);
 			}
 			{
 			if ((LA(1)=='.')) {
 				match('.');
 				{
-				int _cnt61=0;
-				_loop61:
+				int _cnt63=0;
+				_loop63:
 				do {
 					if (((LA(1) >= '0' && LA(1) <= '9'))) {
 						matchRange('0','9');
 					}
 					else {
-						if ( _cnt61>=1 ) { break _loop61; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+						if ( _cnt63>=1 ) { break _loop63; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 					}
 					
-					_cnt61++;
+					_cnt63++;
 				} while (true);
 				}
 			}
@@ -392,8 +392,8 @@ tryAgain:
 		
 		match('"');
 		{
-		int _cnt68=0;
-		_loop68:
+		int _cnt70=0;
+		_loop70:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -432,10 +432,10 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt68>=1 ) { break _loop68; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+				if ( _cnt70>=1 ) { break _loop70; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
-			_cnt68++;
+			_cnt70++;
 		} while (true);
 		}
 		match('"');

@@ -14,20 +14,20 @@ LITERAL_sing="sing"=14
 T_texto=15
 LITERAL_takes="takes"=16
 LITERAL_rule="rule"=17
-LITERAL_dwarf="dwarf"=18
-LITERAL_titan="titan"=19
-"half dwarf"=20
-"half titan"=21
-LITERAL_alien="alien"=22
-LITERAL_human="human"=23
-T_ac=24
-T_fc=25
-LITERAL_curse="curse"=26
-LITERAL_loop="loop"=27
-LITERAL_action="action"=28
-LITERAL_heals="heals"=29
-LITERAL_damages="damages"=30
-LITERAL_hits="hits"=31
-LITERAL_shares="shares"=32
-T_num=33
+T_num=18
+LITERAL_dwarf="dwarf"=19
+LITERAL_titan="titan"=20
+"half dwarf"=21
+"half titan"=22
+LITERAL_alien="alien"=23
+LITERAL_human="human"=24
+T_ac=25
+T_fc=26
+LITERAL_curse="curse"=27
+LITERAL_loop="loop"=28
+LITERAL_action="action"=29
+LITERAL_heals="heals"=30
+LITERAL_damages="damages"=31
+LITERAL_hits="hits"=32
+LITERAL_shares="shares"=33
 T_blank=34

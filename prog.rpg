@@ -12,5 +12,9 @@ scroll c, d!
 	sing(a)!
 	sing(b)!
 	sing( c )!
+	loop( c human 4)
+	turn
+		sing("funciona por favoooor")!
+	endTurn
 	
 endCampaign
