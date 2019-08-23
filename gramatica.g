@@ -166,9 +166,31 @@ cmdWhile : 		{CmdWhile expressaoWhile =  new CmdWhile();}
 				}
 		;
 
-cmdDoWhile : "action" T_ac 
-				(cmd)+
-			T_fc "loop" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp
+cmdDoWhile :	{CmdDoWhile expressaoDoWhile =  new CmdDoWhile();
+				CmdDoWhile expressaoDoWhileFim =  new CmdDoWhile("fim");
+				} 
+				"action" T_ac 
+				{
+					t.addComando(expressaoDoWhile);
+				}
+					(cmd)+
+				T_fc "loop" T_ap ((T_Id|T_num)
+				{
+					expressaoDoWhileFim.setLeft(LT(0).getText());
+				} 
+					("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") 
+				{
+					expressaoDoWhileFim.setOp(LT(0).getText());
+				}
+					(T_Id|T_num)
+				{
+					expressaoDoWhileFim.setRight(LT(0).getText());
+				})
+				
+				T_fp{
+					
+					t.addComando(expressaoDoWhileFim);
+				}
 		;
 		
 expr	: 

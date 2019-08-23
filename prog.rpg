@@ -14,9 +14,15 @@ scroll c, d!
 	sing( c )!
 	a takes b heals f!
 	a takes a heals 2!
+	
 	loop( c human 4)
 	turn
 		sing("funciona por favoooor")!
 	endTurn
+	
+	action
+	turn
+		sing("funciona por favoooor")!
+	endTurn loop( c human 4)
 	
 endCampaign

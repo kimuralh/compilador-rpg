@@ -15,19 +15,19 @@ public class CmdAttr extends Comando
 	@Override
 	public String toJava() 
 	{	
-		System.out.println(this.value);
-		switch(this.type)
-		{
-			case "rune":
-				return "int " + idVar + "="+ value.toString();
-
-			case "scroll":
-			return "double " + idVar + "="+ value.toString();
-			
-			default:
-				throw new RuntimeException("Type " + this.type + " couldn't be recognized!");
-		}
-
+//		System.out.println(this.value);
+//		switch(this.type)
+//		{
+//			case "rune":
+//				return "int " + idVar + "="+ value.toString();
+//
+//			case "scroll":
+//			return "double " + idVar + "="+ value.toString();
+//			
+//			default:
+//				throw new RuntimeException("Type " + this.type + " couldn't be recognized!");
+//		}
+		return null;
 	}
 
 }
