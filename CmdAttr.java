@@ -3,31 +3,42 @@ import javax.print.event.PrintJobListener;
 
 public class CmdAttr extends Comando
 {
-	private String idVar;
+    String javaExpression;
 
-	public CmdAttr(String idVar, String type, String value) 
+	public CmdAttr(String var, Expressao exp) 
 	{
-		this.idVar = idVar;
-		this.type = type;
-		this.value = value;
+        this.expression = exp;
+        javaExpression = var + " = ";
 	}
 
 	@Override
 	public String toJava() 
 	{	
-//		System.out.println(this.value);
-//		switch(this.type)
-//		{
-//			case "rune":
-//				return "int " + idVar + "="+ value.toString();
-//
-//			case "scroll":
-//			return "double " + idVar + "="+ value.toString();
-//			
-//			default:
-//				throw new RuntimeException("Type " + this.type + " couldn't be recognized!");
-//		}
-		return null;
+        for (String termo : this.expression.termos) 
+        {
+            String newTermo;
+            switch(termo)
+            {
+                case "heals":
+                    newTermo = "+";
+                    break;
+                case "damages":
+                    newTermo = "-";
+                    break;
+                case "hits":
+                    newTermo = "*";
+                    break;
+                case "shares":
+                    newTermo = "/";
+                    break;
+                default:
+                    newTermo = termo;
+                    break;
+            }
+            javaExpression += (" " + newTermo);
+        }
+        javaExpression += ";";
+		return javaExpression;
 	}
 
 }

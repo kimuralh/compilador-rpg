@@ -12,7 +12,7 @@ scroll c, d!
 	sing(a)!
 	sing(b)!
 	sing( c )!
-	a takes b heals f!
+	a takes b heals 3   !
 	a takes a heals 2!
 	
 	loop( c human 4)

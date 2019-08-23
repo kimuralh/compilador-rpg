@@ -19,6 +19,9 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
 
 	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
+	String var;
+
+	java.util.Stack<Expressao> expressoes = new java.util.Stack<Expressao>();
 	
 	 public void setTradutor(String name){
       t = new Tradutor(name);
@@ -222,6 +225,7 @@ public RPGParser(ParserSharedInputState state) {
 			case T_Id:
 			{
 				cmdAttr();
+				System.out.println(LT(0).getText());
 				match(T_pontoesc);
 				break;
 			}
@@ -319,14 +323,17 @@ public RPGParser(ParserSharedInputState state) {
 		try {      // for error handling
 			match(T_Id);
 			if(!mapaVar.containsKey(LT(0).getText())){
-				System.out.println(mapaVar.keySet());
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								} 
+								else
+								{
+									var = LT(0).getText();
+								}
 							
 			match(LITERAL_takes);
 			expr();
 			
-							t.addComando(new CmdAttr(LT(0).getText(), mapaVar.get(LT(0).getText()), LT(1).getText()));
+							t.addComando(new CmdAttr(var, expressoes.pop()));
 						
 		}
 		catch (RecognitionException ex) {
@@ -735,7 +742,9 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
+			Expressao novo = new Expressao();
 			termo();
+			novo.addTermo(LT(0).getText());
 			{
 			_loop46:
 			do {
@@ -758,6 +767,7 @@ public RPGParser(ParserSharedInputState state) {
 					}
 					}
 					}
+					novo.addTermo(LT(0).getText());;
 					termo();
 				}
 				else {
@@ -766,6 +776,8 @@ public RPGParser(ParserSharedInputState state) {
 				
 			} while (true);
 			}
+			novo.addTermo(LT(0).getText());
+			expressoes.push(novo);
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);

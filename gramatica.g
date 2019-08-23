@@ -2,6 +2,9 @@ class RPGParser extends Parser;
 {
 	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
+	String var;
+
+	java.util.Stack<Expressao> expressoes = new java.util.Stack<Expressao>();
 	
 	 public void setTradutor(String name){
       t = new Tradutor(name);
@@ -63,7 +66,7 @@ bloco	: (cmd)+ "endCampaign"
 
 cmd	: cmdLeia T_pontoesc
 	| cmdEscreva T_pontoesc
-	| cmdAttr T_pontoesc
+	| cmdAttr {System.out.println(LT(0).getText());} T_pontoesc
 	| cmdIf 
 	| cmdWhile 
 	| cmdDoWhile 
@@ -94,15 +97,20 @@ cmdEscreva : "sing" T_ap (
 					;
 
 cmdAttr : 	T_Id { if(!mapaVar.containsKey(LT(0).getText())){
-	System.out.println(mapaVar.keySet());
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					} 
+					else
+					{
+						var = LT(0).getText();
+					}
 				}
 			"takes" 
+			
 			expr
 			{
-				t.addComando(new CmdAttr(LT(0).getText(), mapaVar.get(LT(0).getText()), LT(1).getText()));
+				t.addComando(new CmdAttr(var, expressoes.pop()));
 			}
+			
 	;
 	
 cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
@@ -193,8 +201,9 @@ cmdDoWhile :	{CmdDoWhile expressaoDoWhile =  new CmdDoWhile();
 				}
 		;
 		
-expr	: 
-		termo(( "heals" | "damages")termo)*
+expr	: {Expressao novo = new Expressao();} 
+		termo {novo.addTermo(LT(0).getText()); } (( "heals" | "damages") {novo.addTermo(LT(0).getText());; }termo)*{novo.addTermo(LT(0).getText());}
+		{expressoes.push(novo);}
 	;
 
 termo : fator(("hits"| "shares")fator)*
