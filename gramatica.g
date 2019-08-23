@@ -3,6 +3,7 @@ class RPGParser extends Parser;
 	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
 	String var;
+	Expressao novo;
 
 	java.util.Stack<Expressao> expressoes = new java.util.Stack<Expressao>();
 	
@@ -66,7 +67,7 @@ bloco	: (cmd)+ "endCampaign"
 
 cmd	: cmdLeia T_pontoesc
 	| cmdEscreva T_pontoesc
-	| cmdAttr {System.out.println(LT(0).getText());} T_pontoesc
+	| cmdAttr  T_pontoesc
 	| cmdIf 
 	| cmdWhile 
 	| cmdDoWhile 
@@ -75,7 +76,6 @@ cmd	: cmdLeia T_pontoesc
 cmdLeia :	"equip" T_ap 
 			T_Id { 
 				if(!mapaVar.containsKey(LT(0).getText())){
-					System.out.println(mapaVar.keySet());
 				throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
 					t.addComando(new CmdLeia(LT(0).getText(), mapaVar.get(LT(0).getText())));
@@ -86,7 +86,7 @@ cmdLeia :	"equip" T_ap
 cmdEscreva : "sing" T_ap (
 						T_texto
 						|T_Id { if(!mapaVar.containsKey(LT(0).getText())){
-							System.out.println(mapaVar.keySet());
+							
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 							}
@@ -96,7 +96,7 @@ cmdEscreva : "sing" T_ap (
 						T_fp
 					;
 
-cmdAttr : 	T_Id { if(!mapaVar.containsKey(LT(0).getText())){
+cmdAttr : {novo = new Expressao();} 	T_Id { if(!mapaVar.containsKey(LT(0).getText())){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					} 
 					else
@@ -200,22 +200,25 @@ cmdDoWhile :	{CmdDoWhile expressaoDoWhile =  new CmdDoWhile();
 					t.addComando(expressaoDoWhileFim);
 				}
 		;
-		
-expr	: {Expressao novo = new Expressao();} 
-		termo {novo.addTermo(LT(0).getText()); } (( "heals" | "damages") {novo.addTermo(LT(0).getText());; }termo)*{novo.addTermo(LT(0).getText());}
+expr	:  
+		termo  (( "heals" | "damages") {novo.addTermo(LT(0).getText()); }termo)*
 		{expressoes.push(novo);}
 	;
 
-termo : fator(("hits"| "shares")fator)*
+termo : fator (("hits"| "shares") {novo.addTermo(LT(0).getText());}fator)*  
 	;
 
-fator 	: T_Id { if(!mapaVar.containsKey(LT(0).getText())){
-					System.out.println(mapaVar.keySet());
+fator 	: T_Id  { if(!mapaVar.containsKey(LT(0).getText())){
 					throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 					}
+					else
+					{
+						{novo.addTermo(LT(0).getText());}
+					}
 				}
-		| T_num 
+		| T_num {novo.addTermo(LT(0).getText());} 
 		| T_ap expr T_fp
+		{novo.addTermo(LT(0).getText());}
 	;
 
 class RPGLexer extends Lexer;

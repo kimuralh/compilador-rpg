@@ -20,6 +20,7 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
 	java.util.HashMap<String, String> mapaVar  = new java.util.HashMap<String,String>();
 	Tradutor t;
 	String var;
+	Expressao novo;
 
 	java.util.Stack<Expressao> expressoes = new java.util.Stack<Expressao>();
 	
@@ -225,7 +226,6 @@ public RPGParser(ParserSharedInputState state) {
 			case T_Id:
 			{
 				cmdAttr();
-				System.out.println(LT(0).getText());
 				match(T_pontoesc);
 				break;
 			}
@@ -265,7 +265,6 @@ public RPGParser(ParserSharedInputState state) {
 			match(T_Id);
 			
 							if(!mapaVar.containsKey(LT(0).getText())){
-								System.out.println(mapaVar.keySet());
 							throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 								}
 								t.addComando(new CmdLeia(LT(0).getText(), mapaVar.get(LT(0).getText())));
@@ -295,7 +294,7 @@ public RPGParser(ParserSharedInputState state) {
 			{
 				match(T_Id);
 				if(!mapaVar.containsKey(LT(0).getText())){
-											System.out.println(mapaVar.keySet());
+											
 									throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
 												}
 											
@@ -321,6 +320,7 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
+			novo = new Expressao();
 			match(T_Id);
 			if(!mapaVar.containsKey(LT(0).getText())){
 								throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
@@ -742,9 +742,7 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
-			Expressao novo = new Expressao();
 			termo();
-			novo.addTermo(LT(0).getText());
 			{
 			_loop46:
 			do {
@@ -767,7 +765,7 @@ public RPGParser(ParserSharedInputState state) {
 					}
 					}
 					}
-					novo.addTermo(LT(0).getText());;
+					novo.addTermo(LT(0).getText());
 					termo();
 				}
 				else {
@@ -776,7 +774,6 @@ public RPGParser(ParserSharedInputState state) {
 				
 			} while (true);
 			}
-			novo.addTermo(LT(0).getText());
 			expressoes.push(novo);
 		}
 		catch (RecognitionException ex) {
@@ -848,6 +845,7 @@ public RPGParser(ParserSharedInputState state) {
 					}
 					}
 					}
+					novo.addTermo(LT(0).getText());
 					fator();
 				}
 				else {
@@ -872,8 +870,11 @@ public RPGParser(ParserSharedInputState state) {
 			{
 				match(T_Id);
 				if(!mapaVar.containsKey(LT(0).getText())){
-									System.out.println(mapaVar.keySet());
 									throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!!");
+									}
+									else
+									{
+										{novo.addTermo(LT(0).getText());}
 									}
 								
 				break;
@@ -881,6 +882,7 @@ public RPGParser(ParserSharedInputState state) {
 			case T_num:
 			{
 				match(T_num);
+				novo.addTermo(LT(0).getText());
 				break;
 			}
 			case T_ap:
@@ -888,6 +890,7 @@ public RPGParser(ParserSharedInputState state) {
 				match(T_ap);
 				expr();
 				match(T_fp);
+				novo.addTermo(LT(0).getText());
 				break;
 			}
 			default:

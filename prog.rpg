@@ -12,8 +12,13 @@ scroll c, d!
 	sing(a)!
 	sing(b)!
 	sing( c )!
+    a takes 1!
+    a takes 3!
+    a takes 4 heals b!
+    a takes a heals 4!
 	a takes b heals 3   !
 	a takes a heals 2!
+    a takes a hits 2!
 	
 	loop( c human 4)
 	turn

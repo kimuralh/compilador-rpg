@@ -16,6 +16,7 @@ public class CmdAttr extends Comando
 	{	
         for (String termo : this.expression.termos) 
         {
+            termo = termo.trim();
             String newTermo;
             switch(termo)
             {
