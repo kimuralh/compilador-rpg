@@ -27,6 +27,7 @@ public class RPGParser extends antlr.LLkParser       implements RPGParserTokenTy
 	public Tradutor getTradutor(){
        return t;
     }
+
 	
 
 protected RPGParser(TokenBuffer tokenBuf, int k) {
@@ -328,10 +329,32 @@ public RPGParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
+			CmdIf expressaoIf =  new CmdIf();
 			match(LITERAL_rule);
 			match(T_ap);
 			{
-			expr();
+			{
+			switch ( LA(1)) {
+			case T_Id:
+			{
+				match(T_Id);
+				break;
+			}
+			case T_num:
+			{
+				match(T_num);
+				break;
+			}
+			default:
+			{
+				throw new NoViableAltException(LT(1), getFilename());
+			}
+			}
+			}
+			
+							expressaoIf.setLeft(LT(0).getText());
+							System.out.println(LT(0).getText());
+						
 			{
 			switch ( LA(1)) {
 			case LITERAL_dwarf:
@@ -344,14 +367,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 20:
-			{
-				match(20);
-				break;
-			}
 			case 21:
 			{
 				match(21);
+				break;
+			}
+			case 22:
+			{
+				match(22);
 				break;
 			}
 			case LITERAL_alien:
@@ -370,25 +393,57 @@ public RPGParser(ParserSharedInputState state) {
 			}
 			}
 			}
-			expr();
+			
+							expressaoIf.setOp(LT(0).getText());
+							System.out.println(LT(0).getText());
+						
+			{
+			switch ( LA(1)) {
+			case T_Id:
+			{
+				match(T_Id);
+				break;
+			}
+			case T_num:
+			{
+				match(T_num);
+				break;
+			}
+			default:
+			{
+				throw new NoViableAltException(LT(1), getFilename());
+			}
+			}
+			}
+			
+						 	expressaoIf.setRight(LT(0).getText());
+							System.out.println(LT(0).getText());
+						
 			}
 			match(T_fp);
 			match(T_ac);
+			
+							t.addComando(expressaoIf);
+						
 			{
-			int _cnt22=0;
-			_loop22:
+			int _cnt24=0;
+			_loop24:
 			do {
 				if ((_tokenSet_2.member(LA(1)))) {
 					cmd();
 				}
 				else {
-					if ( _cnt22>=1 ) { break _loop22; } else {throw new NoViableAltException(LT(1), getFilename());}
+					if ( _cnt24>=1 ) { break _loop24; } else {throw new NoViableAltException(LT(1), getFilename());}
 				}
 				
-				_cnt22++;
+				_cnt24++;
 			} while (true);
 			}
 			match(T_fc);
+			
+								CmdIf expressaoIfFim =  new CmdIf("fim");
+								t.addComando(expressaoIfFim);
+							
 			{
 			switch ( LA(1)) {
 			case LITERAL_curse:
@@ -440,14 +495,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 20:
-			{
-				match(20);
-				break;
-			}
 			case 21:
 			{
 				match(21);
+				break;
+			}
+			case 22:
+			{
+				match(22);
 				break;
 			}
 			case LITERAL_alien:
@@ -471,17 +526,17 @@ public RPGParser(ParserSharedInputState state) {
 			match(T_fp);
 			match(T_ac);
 			{
-			int _cnt31=0;
-			_loop31:
+			int _cnt33=0;
+			_loop33:
 			do {
 				if ((_tokenSet_2.member(LA(1)))) {
 					cmd();
 				}
 				else {
-					if ( _cnt31>=1 ) { break _loop31; } else {throw new NoViableAltException(LT(1), getFilename());}
+					if ( _cnt33>=1 ) { break _loop33; } else {throw new NoViableAltException(LT(1), getFilename());}
 				}
 				
-				_cnt31++;
+				_cnt33++;
 			} while (true);
 			}
 			match(T_fc);
@@ -499,17 +554,17 @@ public RPGParser(ParserSharedInputState state) {
 			match(LITERAL_action);
 			match(T_ac);
 			{
-			int _cnt34=0;
-			_loop34:
+			int _cnt36=0;
+			_loop36:
 			do {
 				if ((_tokenSet_2.member(LA(1)))) {
 					cmd();
 				}
 				else {
-					if ( _cnt34>=1 ) { break _loop34; } else {throw new NoViableAltException(LT(1), getFilename());}
+					if ( _cnt36>=1 ) { break _loop36; } else {throw new NoViableAltException(LT(1), getFilename());}
 				}
 				
-				_cnt34++;
+				_cnt36++;
 			} while (true);
 			}
 			match(T_fc);
@@ -529,14 +584,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 20:
-			{
-				match(20);
-				break;
-			}
 			case 21:
 			{
 				match(21);
+				break;
+			}
+			case 22:
+			{
+				match(22);
 				break;
 			}
 			case LITERAL_alien:
@@ -571,7 +626,7 @@ public RPGParser(ParserSharedInputState state) {
 		try {      // for error handling
 			termo();
 			{
-			_loop40:
+			_loop42:
 			do {
 				if ((LA(1)==LITERAL_heals||LA(1)==LITERAL_damages)) {
 					{
@@ -595,7 +650,7 @@ public RPGParser(ParserSharedInputState state) {
 					termo();
 				}
 				else {
-					break _loop40;
+					break _loop42;
 				}
 				
 			} while (true);
@@ -614,17 +669,17 @@ public RPGParser(ParserSharedInputState state) {
 			match(LITERAL_curse);
 			match(T_ac);
 			{
-			int _cnt26=0;
-			_loop26:
+			int _cnt28=0;
+			_loop28:
 			do {
 				if ((_tokenSet_2.member(LA(1)))) {
 					cmd();
 				}
 				else {
-					if ( _cnt26>=1 ) { break _loop26; } else {throw new NoViableAltException(LT(1), getFilename());}
+					if ( _cnt28>=1 ) { break _loop28; } else {throw new NoViableAltException(LT(1), getFilename());}
 				}
 				
-				_cnt26++;
+				_cnt28++;
 			} while (true);
 			}
 			match(T_fc);
@@ -641,7 +696,7 @@ public RPGParser(ParserSharedInputState state) {
 		try {      // for error handling
 			fator();
 			{
-			_loop44:
+			_loop46:
 			do {
 				if ((LA(1)==LITERAL_hits||LA(1)==LITERAL_shares)) {
 					{
@@ -665,7 +720,7 @@ public RPGParser(ParserSharedInputState state) {
 					fator();
 				}
 				else {
-					break _loop44;
+					break _loop46;
 				}
 				
 			} while (true);
@@ -735,6 +790,7 @@ public RPGParser(ParserSharedInputState state) {
 		"T_texto",
 		"\"takes\"",
 		"\"rule\"",
+		"T_num",
 		"\"dwarf\"",
 		"\"titan\"",
 		"\"half dwarf\"",
@@ -750,7 +806,6 @@ public RPGParser(ParserSharedInputState state) {
 		"\"damages\"",
 		"\"hits\"",
 		"\"shares\"",
-		"T_num",
 		"T_blank"
 	};
 	
@@ -760,17 +815,17 @@ public RPGParser(ParserSharedInputState state) {
 	}
 	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
 	private static final long[] mk_tokenSet_1() {
-		long[] data = { 402803040L, 0L};
+		long[] data = { 805456224L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
 	private static final long[] mk_tokenSet_2() {
-		long[] data = { 402802752L, 0L};
+		long[] data = { 805455936L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_2 = new BitSet(mk_tokenSet_2());
 	private static final long[] mk_tokenSet_3() {
-		long[] data = { 436358208L, 0L};
+		long[] data = { 872565824L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_3 = new BitSet(mk_tokenSet_3());
@@ -780,17 +835,17 @@ public RPGParser(ParserSharedInputState state) {
 	}
 	public static final BitSet _tokenSet_4 = new BitSet(mk_tokenSet_4());
 	private static final long[] mk_tokenSet_5() {
-		long[] data = { 16523776L, 0L};
+		long[] data = { 33038848L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_5 = new BitSet(mk_tokenSet_5());
 	private static final long[] mk_tokenSet_6() {
-		long[] data = { 1627136512L, 0L};
+		long[] data = { 3254264320L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_6 = new BitSet(mk_tokenSet_6());
 	private static final long[] mk_tokenSet_7() {
-		long[] data = { 8069587456L, 0L};
+		long[] data = { 16139166208L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_7 = new BitSet(mk_tokenSet_7());

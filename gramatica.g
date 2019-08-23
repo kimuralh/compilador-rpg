@@ -10,6 +10,7 @@ class RPGParser extends Parser;
 	public Tradutor getTradutor(){
        return t;
     }
+
 	
 }
 
@@ -93,9 +94,32 @@ cmdAttr : 	T_Id { if(mapaVar.get(LT(0).getText()) == null){
 			expr
 	;
 	
-cmdIf	:	"rule" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp T_ac
+cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
+			"rule" T_ap ((T_Id|T_num)
+			{
+				expressaoIf.setLeft(LT(0).getText());
+				System.out.println(LT(0).getText());
+			} 
+			("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human")
+			{
+				expressaoIf.setOp(LT(0).getText());
+				System.out.println(LT(0).getText());
+			} 
+			 (T_Id|T_num) 
+			 {
+			 	expressaoIf.setRight(LT(0).getText());
+				System.out.println(LT(0).getText());
+			 }) T_fp T_ac 
+			{
+				t.addComando(expressaoIf);
+			}
 				(cmd)+
-				T_fc (cmdElse)?
+				T_fc
+				{
+					CmdIf expressaoIfFim =  new CmdIf("fim");
+					t.addComando(expressaoIfFim);
+				}
+				(cmdElse)?
 		;
 
 cmdElse :  "curse" T_ac
@@ -113,7 +137,8 @@ cmdDoWhile : "action" T_ac
 			T_fc "dungeon" T_ap (expr ("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human") expr) T_fp
 		;
 		
-expr	: termo(( "heals" | "damages")termo)*
+expr	: 
+		termo(( "heals" | "damages")termo)*
 	;
 
 termo : fator(("hits"| "shares")fator)*

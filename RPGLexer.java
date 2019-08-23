@@ -40,27 +40,27 @@ public RPGLexer(LexerSharedInputState state) {
 	caseSensitiveLiterals = true;
 	setCaseSensitive(true);
 	literals = new Hashtable();
-	literals.put(new ANTLRHashString("action", this), new Integer(28));
+	literals.put(new ANTLRHashString("action", this), new Integer(29));
 	literals.put(new ANTLRHashString("sing", this), new Integer(14));
 	literals.put(new ANTLRHashString("takes", this), new Integer(16));
-	literals.put(new ANTLRHashString("curse", this), new Integer(26));
-	literals.put(new ANTLRHashString("human", this), new Integer(23));
-	literals.put(new ANTLRHashString("damages", this), new Integer(30));
+	literals.put(new ANTLRHashString("curse", this), new Integer(27));
+	literals.put(new ANTLRHashString("human", this), new Integer(24));
+	literals.put(new ANTLRHashString("damages", this), new Integer(31));
 	literals.put(new ANTLRHashString("campaign", this), new Integer(4));
-	literals.put(new ANTLRHashString("half titan", this), new Integer(21));
-	literals.put(new ANTLRHashString("dungeon", this), new Integer(27));
-	literals.put(new ANTLRHashString("heals", this), new Integer(29));
+	literals.put(new ANTLRHashString("half titan", this), new Integer(22));
+	literals.put(new ANTLRHashString("dungeon", this), new Integer(28));
+	literals.put(new ANTLRHashString("heals", this), new Integer(30));
 	literals.put(new ANTLRHashString("endCampaign", this), new Integer(10));
-	literals.put(new ANTLRHashString("alien", this), new Integer(22));
-	literals.put(new ANTLRHashString("titan", this), new Integer(19));
+	literals.put(new ANTLRHashString("alien", this), new Integer(23));
+	literals.put(new ANTLRHashString("titan", this), new Integer(20));
 	literals.put(new ANTLRHashString("rule", this), new Integer(17));
 	literals.put(new ANTLRHashString("rune", this), new Integer(5));
-	literals.put(new ANTLRHashString("hits", this), new Integer(31));
+	literals.put(new ANTLRHashString("hits", this), new Integer(32));
 	literals.put(new ANTLRHashString("equip", this), new Integer(11));
 	literals.put(new ANTLRHashString("scroll", this), new Integer(8));
-	literals.put(new ANTLRHashString("half dwarf", this), new Integer(20));
-	literals.put(new ANTLRHashString("shares", this), new Integer(32));
-	literals.put(new ANTLRHashString("dwarf", this), new Integer(18));
+	literals.put(new ANTLRHashString("half dwarf", this), new Integer(21));
+	literals.put(new ANTLRHashString("shares", this), new Integer(33));
+	literals.put(new ANTLRHashString("dwarf", this), new Integer(19));
 }
 
 public Token nextToken() throws TokenStreamException {
@@ -236,7 +236,7 @@ tryAgain:
 		}
 		}
 		{
-		_loop51:
+		_loop53:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -270,7 +270,7 @@ tryAgain:
 			}
 			default:
 			{
-				break _loop51;
+				break _loop53;
 			}
 			}
 		} while (true);
@@ -301,34 +301,34 @@ tryAgain:
 		{
 			{
 			{
-			int _cnt56=0;
-			_loop56:
+			int _cnt58=0;
+			_loop58:
 			do {
 				if (((LA(1) >= '1' && LA(1) <= '9'))) {
 					matchRange('1','9');
 				}
 				else {
-					if ( _cnt56>=1 ) { break _loop56; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+					if ( _cnt58>=1 ) { break _loop58; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				
-				_cnt56++;
+				_cnt58++;
 			} while (true);
 			}
 			{
 			if ((LA(1)=='.')) {
 				match('.');
 				{
-				int _cnt59=0;
-				_loop59:
+				int _cnt61=0;
+				_loop61:
 				do {
 					if (((LA(1) >= '0' && LA(1) <= '9'))) {
 						matchRange('0','9');
 					}
 					else {
-						if ( _cnt59>=1 ) { break _loop59; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+						if ( _cnt61>=1 ) { break _loop61; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 					}
 					
-					_cnt59++;
+					_cnt61++;
 				} while (true);
 				}
 			}
@@ -410,8 +410,8 @@ tryAgain:
 		
 		match('"');
 		{
-		int _cnt66=0;
-		_loop66:
+		int _cnt68=0;
+		_loop68:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -450,10 +450,10 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt66>=1 ) { break _loop66; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+				if ( _cnt68>=1 ) { break _loop68; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
-			_cnt66++;
+			_cnt68++;
 		} while (true);
 		}
 		match('"');
