@@ -43,6 +43,7 @@ public class Tradutor{
 	// 	Iterator it = lista.iterator();
 	// 	while (it.hasNext()){
 	// 		variaveisDouble.add((String)it.next());
+	//ss
 	// 	}
 		
 	}
