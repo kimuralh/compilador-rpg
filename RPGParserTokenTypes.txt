@@ -17,17 +17,19 @@ LITERAL_rule="rule"=17
 T_num=18
 LITERAL_dwarf="dwarf"=19
 LITERAL_titan="titan"=20
-"half dwarf"=21
-"half titan"=22
+LITERAL_halfDwarf="halfDwarf"=21
+LITERAL_halfTitan="halfTitan"=22
 LITERAL_alien="alien"=23
 LITERAL_human="human"=24
 T_ac=25
 T_fc=26
 LITERAL_curse="curse"=27
 LITERAL_loop="loop"=28
-LITERAL_action="action"=29
-LITERAL_heals="heals"=30
-LITERAL_damages="damages"=31
-LITERAL_hits="hits"=32
-LITERAL_shares="shares"=33
-T_blank=34
+"half dwarf"=29
+"half titan"=30
+LITERAL_action="action"=31
+LITERAL_heals="heals"=32
+LITERAL_damages="damages"=33
+LITERAL_hits="hits"=34
+LITERAL_shares="shares"=35
+T_blank=36

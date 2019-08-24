@@ -383,14 +383,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 21:
+			case LITERAL_halfDwarf:
 			{
-				match(21);
+				match(LITERAL_halfDwarf);
 				break;
 			}
-			case 22:
+			case LITERAL_halfTitan:
 			{
-				match(22);
+				match(LITERAL_halfTitan);
 				break;
 			}
 			case LITERAL_alien:
@@ -530,14 +530,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 21:
+			case 29:
 			{
-				match(21);
+				match(29);
 				break;
 			}
-			case 22:
+			case 30:
 			{
-				match(22);
+				match(30);
 				break;
 			}
 			case LITERAL_alien:
@@ -675,14 +675,14 @@ public RPGParser(ParserSharedInputState state) {
 				match(LITERAL_titan);
 				break;
 			}
-			case 21:
+			case 29:
 			{
-				match(21);
+				match(29);
 				break;
 			}
-			case 22:
+			case 30:
 			{
-				match(22);
+				match(30);
 				break;
 			}
 			case LITERAL_alien:
@@ -928,14 +928,16 @@ public RPGParser(ParserSharedInputState state) {
 		"T_num",
 		"\"dwarf\"",
 		"\"titan\"",
-		"\"half dwarf\"",
-		"\"half titan\"",
+		"\"halfDwarf\"",
+		"\"halfTitan\"",
 		"\"alien\"",
 		"\"human\"",
 		"T_ac",
 		"T_fc",
 		"\"curse\"",
 		"\"loop\"",
+		"\"half dwarf\"",
+		"\"half titan\"",
 		"\"action\"",
 		"\"heals\"",
 		"\"damages\"",
@@ -950,17 +952,17 @@ public RPGParser(ParserSharedInputState state) {
 	}
 	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
 	private static final long[] mk_tokenSet_1() {
-		long[] data = { 805456224L, 0L};
+		long[] data = { 2416068960L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
 	private static final long[] mk_tokenSet_2() {
-		long[] data = { 805455936L, 0L};
+		long[] data = { 2416068672L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_2 = new BitSet(mk_tokenSet_2());
 	private static final long[] mk_tokenSet_3() {
-		long[] data = { 872565824L, 0L};
+		long[] data = { 2483178560L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_3 = new BitSet(mk_tokenSet_3());
@@ -975,12 +977,12 @@ public RPGParser(ParserSharedInputState state) {
 	}
 	public static final BitSet _tokenSet_5 = new BitSet(mk_tokenSet_5());
 	private static final long[] mk_tokenSet_6() {
-		long[] data = { 3221234176L, 0L};
+		long[] data = { 12884910592L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_6 = new BitSet(mk_tokenSet_6());
 	private static final long[] mk_tokenSet_7() {
-		long[] data = { 16106136064L, 0L};
+		long[] data = { 64424518144L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_7 = new BitSet(mk_tokenSet_7());

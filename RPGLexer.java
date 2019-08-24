@@ -40,26 +40,28 @@ public RPGLexer(LexerSharedInputState state) {
 	caseSensitiveLiterals = true;
 	setCaseSensitive(true);
 	literals = new Hashtable();
-	literals.put(new ANTLRHashString("action", this), new Integer(29));
+	literals.put(new ANTLRHashString("action", this), new Integer(31));
 	literals.put(new ANTLRHashString("sing", this), new Integer(14));
 	literals.put(new ANTLRHashString("takes", this), new Integer(16));
 	literals.put(new ANTLRHashString("loop", this), new Integer(28));
 	literals.put(new ANTLRHashString("curse", this), new Integer(27));
 	literals.put(new ANTLRHashString("human", this), new Integer(24));
-	literals.put(new ANTLRHashString("damages", this), new Integer(31));
+	literals.put(new ANTLRHashString("halfDwarf", this), new Integer(21));
+	literals.put(new ANTLRHashString("damages", this), new Integer(33));
 	literals.put(new ANTLRHashString("campaign", this), new Integer(4));
-	literals.put(new ANTLRHashString("half titan", this), new Integer(22));
-	literals.put(new ANTLRHashString("heals", this), new Integer(30));
+	literals.put(new ANTLRHashString("half titan", this), new Integer(30));
+	literals.put(new ANTLRHashString("heals", this), new Integer(32));
 	literals.put(new ANTLRHashString("endCampaign", this), new Integer(10));
 	literals.put(new ANTLRHashString("alien", this), new Integer(23));
 	literals.put(new ANTLRHashString("titan", this), new Integer(20));
 	literals.put(new ANTLRHashString("rule", this), new Integer(17));
 	literals.put(new ANTLRHashString("rune", this), new Integer(5));
-	literals.put(new ANTLRHashString("hits", this), new Integer(32));
+	literals.put(new ANTLRHashString("hits", this), new Integer(34));
 	literals.put(new ANTLRHashString("equip", this), new Integer(11));
 	literals.put(new ANTLRHashString("scroll", this), new Integer(8));
-	literals.put(new ANTLRHashString("half dwarf", this), new Integer(21));
-	literals.put(new ANTLRHashString("shares", this), new Integer(33));
+	literals.put(new ANTLRHashString("half dwarf", this), new Integer(29));
+	literals.put(new ANTLRHashString("halfTitan", this), new Integer(22));
+	literals.put(new ANTLRHashString("shares", this), new Integer(35));
 	literals.put(new ANTLRHashString("dwarf", this), new Integer(19));
 }
 
