@@ -118,7 +118,7 @@ cmdIf	:	{CmdIf expressaoIf =  new CmdIf();}
 			{
 				expressaoIf.setLeft(LT(0).getText());
 			} 
-			("dwarf"|"titan"|"half dwarf"|"half titan"|"alien"|"human")
+			("dwarf"|"titan"|"halfDwarf"|"halfTitan"|"alien"|"human")
 			{
 				expressaoIf.setOp(LT(0).getText());
 			} 

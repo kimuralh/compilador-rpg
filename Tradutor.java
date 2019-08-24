@@ -57,6 +57,7 @@ public class Tradutor{
 			f.write("public class "+name+"{\n");
 			f.write("    public static void main(String args[]){\n");
 			f.write("      java.util.Scanner "+INPUT+"=new java.util.Scanner(System.in);\n");
+			System.out.println(" \n");
 			if(variaveisDouble.size() == 0){
 				for(int i=0; i<variaveisInt.size() ; i++){
 					f.write(" int "+variaveisInt.get(i)+";\n");

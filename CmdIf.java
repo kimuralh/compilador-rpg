@@ -65,10 +65,10 @@ public class CmdIf extends Comando{
 				else if(op.equals("dwarf")){
 					op = "<";
 				}
-				else if(op.equals("half titan")){
+				else if(op.equals("halfTitan")){
 					op = ">=";
 				}
-				else if(op.equals("half dwarf")){
+				else if(op.equals("halfDwarf")){
 					op = "<=";
 				}
 				else{

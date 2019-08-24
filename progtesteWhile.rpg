@@ -1,0 +1,21 @@
+campaign
+rune a,b,c, y!
+
+
+sing("digite um valor")!
+equip(a)!
+sing("digite uma potencia")!
+equip(b)!
+
+c takes 1!
+y takes a!
+
+loop(c dwarf b)
+turn
+a takes a hits y!
+c takes c heals 1!
+endTurn
+
+sing(a)!
+
+endCampaign

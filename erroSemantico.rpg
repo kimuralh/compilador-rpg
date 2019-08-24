@@ -1,0 +1,5 @@
+campaign
+rune a!
+equip(a heals 3)!
+	
+endCampaign
