@@ -1,0 +1,14 @@
+campaign
+rune a, b!
+sing("digite um valor")!
+equip(a)!
+b takes 11 heals a!
+
+action
+turn
+    sing(a)!
+    a takes a heals 1!
+endTurn
+loop(a hits b)
+
+endCampaign
